@@ -40,6 +40,20 @@ return (
     <div style = {{minHeight:"100vh", background:"linear-gradient(to right, #141e30, #243b55)", padding:"30px"}}>
     */}
 
+  {/*glass container
+  <div style={{
+    maxWidth: "1200px",
+    margin: "40px auto",
+    padding: "30px",
+    borderRadius: "25px",
+    background: "rgba(255,255,255,0.25)",
+    backdropFilter: "blur(25px)",
+    boxShadow: "0 100px 150px rgba(0,0,0,0.2)"
+  }}></div>
+*/}
+
+
+
     {/*header punya section*/}
     <div style={{
       maxWidth: "1100px", 
@@ -60,11 +74,13 @@ return (
       
       <h1 style={{
         color: "white", margin: 0, fontWeight:"600", letterSpacing: "1px"}}>User Directory</h1>
-    </div>
+        <p className="subtitle">Manage and explore users easily</p>
+  </div>
 
   
 
     {/* search input*/}
+    <div className="grid">
     <input
     type="text"
     placeholder="Search user by name.."
@@ -85,7 +101,7 @@ return (
     
     boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
   transition:"0.3s"}}
-    />
+    /></div>
 
     {/* user cards punya sec*/}
     <div style={{
@@ -93,6 +109,7 @@ return (
       maxWidth:"1100px",
       margin: "0 auto",
       gridTemplateColumns:"repeat(auto-fit, minmax(250px, 1fr))", gap: "20px"}}>
+    
 
       {filteredUsers.map(user => (
         <div
@@ -108,11 +125,14 @@ return (
           color: "white"}}
           onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-5px) scale(1.02)"}
           onMouseLeave={(e) => e.currentTarget.style.transform = "translate(0)"}>
+          
 
           <h3>{user.name}</h3>
           <p>{user.email}</p>
           <p>{user.address.city}</p>
+          
           </div>
+          
         ))}
       </div>
       </div>
