@@ -1,4 +1,5 @@
 import logoBeyodHorizon from "./assets/logoBeyondHorizon.jpg"
+import "./index.css"
 import { useEffect, useState } from "react"
 
 function App() {
@@ -26,56 +27,97 @@ const filteredUsers = userList.filter(user =>
 
 
 if (userList.length === 0) {
-  return <p style={{textAlign:"center",marginTop:"50px", } }>Loading Users..</p>
+  return <p style={{textAlign:"center",marginTop:"50px", color:"white"} }>Loading Users..</p>
 }
 
 return (
-  <div style = {{minHeight:"100vh", background:"linear-gradient(to right, #141e30, #243b55)", padding:"30px"}}>
+  <>
+  {/*try nk buat glow*/}
+  <div className="bg-glow"></div>
+  <div className="app">
+
+    {/*
+    <div style = {{minHeight:"100vh", background:"linear-gradient(to right, #141e30, #243b55)", padding:"30px"}}>
+    */}
 
     {/*header punya section*/}
-  <div style={{width: " 100%", padding: "20px", background: "rgba(0,0,0,0.3)", 
-    backdropFilter:"blur(10px)", borderRadius:"12px", display:"flex", alignItems:"center", gap: "15px", marginBottom: "30px"}}>
+    <div style={{
+      maxWidth: "1100px", 
+      padding: "20px", 
+      margin:"0 auto 30px auto",
+      background: "rgba(255,255,255,0.08)", 
+      boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+      backdropFilter:"blur(15px)",
+      borderRadius:"15px", 
+      display:"flex", 
+      alignItems:"center", 
+      gap: "15px"
+    }}>
+
 
     {/*logo punya section*/}
-    <div style={{display:"flex", alignItems:"center", gap: "10px"}}>
       <img src={logoBeyodHorizon} alt="logoBeyondHorizon" style={{width:"120px", height:"120px", objectFit:"contain"}}/>
-      <h1>User Directory</h1>
+      
+      <h1 style={{
+        color: "white", margin: 0, fontWeight:"600", letterSpacing: "1px"}}>User Directory</h1>
     </div>
 
-  </div>
+  
 
     {/* search input*/}
     <input
     type="text"
-    placeholder="Search User"
+    placeholder="Search user by name.."
     value={search}
     onChange={(e) => setSearch(e.target.value)}
-    style={{padding: "12px", width: "300px", borderRadius:"10px", border:"none", outline:"none", display: "block", margin: "0 auto 30px auto",
-      background:"rgba(255,255,255,0.2)", color: "white", backdropFilter: "blur(5px)"}}
+    style={{
+      padding: "14px 18px", 
+      margin: "0 auto 40px auto",
+      width: "320px",
+      borderRadius:"12px", 
+      border:"1px solid rgba(255,255,255,0.2)", 
+      outline:"none", 
+      textAlign: "center",
+
+      display: "block", 
+      background:"rgba(255,255,255,0.1)", 
+      color: "white", backdropFilter: "blur(8px)",
+    
+    boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+  transition:"0.3s"}}
     />
 
     {/* user cards punya sec*/}
     <div style={{
-      display: "grid", gridTemplateColumns:"repeat(auto-fit, minmax(250px, 1fr))", gap: "20px"}}>
+      display: "grid",
+      maxWidth:"1100px",
+      margin: "0 auto",
+      gridTemplateColumns:"repeat(auto-fit, minmax(250px, 1fr))", gap: "20px"}}>
+
       {filteredUsers.map(user => (
         <div
         key={user.id}
-        style={{padding: "15px", borderRadius:"12px",background: "rgba(255,255,255,0.15", backdropFilter: "blur(10px)", 
-        transition:"0.3s", cursor: "pointer", boxshadow: "0 4px 12px rgba(0,0,0,0.2)"}}
-          onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-          onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}>
+        style={{
+          padding: "15px", 
+          borderRadius:"12px",
+          background: "rgba(255,255,255,0.15)", 
+          backdropFilter: "blur(10px)", 
+          transition:"0.3s", 
+          cursor: "pointer", 
+          boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+          color: "white"}}
+          onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-5px) scale(1.02)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "translate(0)"}>
+
           <h3>{user.name}</h3>
           <p>{user.email}</p>
           <p>{user.address.city}</p>
           </div>
-
-      ))}
+        ))}
       </div>
-
-  </div>
-)
-
-
+      </div>
+     </>
+  )
 }
 
 export default App
